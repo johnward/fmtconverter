@@ -1,5 +1,5 @@
 [package]
-name = "convertmusic"
+name = "fmtconverter"
 version = "0.1.0"
 authors = ["John Ward <john@johnward.net>"]
 edition = "2018"

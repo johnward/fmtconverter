@@ -7,34 +7,37 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'convertmusic'",
+            "name": "Debug executable 'fmtconverter'",
             "cargo": {
                 "args": [
                     "build",
                     "--bin=convertmusic",
-                    "--package=convertmusic"
+                    "--package=fmtconverter"
                 ],
                 "filter": {
-                    "name": "convertmusic",
+                    "name": "fmtconverter",
                     "kind": "bin"
                 }
             },
-            "args": [],
+            "args": [
+                "-d",
+                "/home/john/Music/VanMusic_toConvert"
+            ],
             "cwd": "${workspaceFolder}"
         },
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'convertmusic'",
+            "name": "Debug unit tests in executable 'fmtconverter'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=convertmusic",
-                    "--package=convertmusic"
+                    "--bin=fmtconverter",
+                    "--package=fmtconverter"
                 ],
                 "filter": {
-                    "name": "convertmusic",
+                    "name": "fmtconverter",
                     "kind": "bin"
                 }
             },
