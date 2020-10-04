@@ -1,7 +1,7 @@
 use std::ffi::OsStr;
 use std::fs;
 use std::fs::DirEntry;
-use std::io;
+use std::io::{stderr, stdout};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -17,19 +17,25 @@ fn process_file<'a>(file: &'a DirEntry) {
     let mut newfile = file.path().clone();
     newfile.set_extension("mp3");
 
+    let filen = file.path().to_str().unwrap(); //.file_name().and_then(OsStr::to_str).unwrap();
+    let new_filen = newfile.to_str().unwrap(); //.file_name().and_then(OsStr::to_str).unwrap();
+
     let output = Command::new("ffmpeg")
         .arg("-i")
-        .arg(file.path().file_name().and_then(OsStr::to_str).unwrap())
-        .arg("-codec:v copy")
-        .arg("-codec:a libmp3lame")
-        .arg("-q:a 2")
-        .arg(newfile.file_name().and_then(OsStr::to_str).unwrap()) // TO CHANGE
+        .arg(file.path().to_str().unwrap())
+        .arg("-codec:v")
+        .arg("copy")
+        .arg("-codec:a")
+        .arg("libmp3lame")
+        .arg("-q:a")
+        .arg("2")
+        .arg(file.path().to_str().unwrap()) // TO CHANGE
         .output()
         .expect("Failed to compile main.exe");
 
     println!("status: {}", output.status);
-    //io::stdout().write_all(&output.stdout).unwrap();
-    //io::stderr().write_all(&output.stderr).unwrap();
+    io::stdout().write_all(&output.stdout).unwrap();
+    io::stderr().write_all(&output.stderr).unwrap();
 
     assert!(output.status.success());
 
