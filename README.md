@@ -5,6 +5,7 @@ This tool was written to convert M4A files to MP3s. The user provides the base i
 This application calls ffmpeg to do the conversion, so this needs to be installed on the platform:
 
 $ sudo apt-get update
+
 $ sudo apt-get install ffmpeg
 
 ## Usage
